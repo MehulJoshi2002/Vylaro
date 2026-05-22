@@ -1,7 +1,7 @@
 from google import genai
 from google.genai import types as genai_types
 
-KEY = "AIzaSyBwZjBTJiLyIhxZ_SXzWxyjzd-YWvNFhqg"
+KEY = os.getenv("GOOGLE_API_KEY")
 client = genai.Client(api_key=KEY)
 
 models_to_try = [

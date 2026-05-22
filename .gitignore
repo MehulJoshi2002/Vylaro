@@ -13,6 +13,9 @@ frontend/.next/
 frontend/.env.local
 frontend/.env
 
+# Claude Code local settings (may contain API keys)
+.claude/settings.local.json
+
 # OS
 .DS_Store
 Thumbs.db
