@@ -1,0 +1,18 @@
+# Python
+backend/venv/
+backend/venv_win/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/fitcopilot.db
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+frontend/.env
+
+# OS
+.DS_Store
+Thumbs.db
