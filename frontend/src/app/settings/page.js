@@ -158,7 +158,7 @@ export default function SettingsPage() {
 
       {/* Current Targets */}
       {originalTargets.calorie && (
-        <div className="glass-card" style={{ marginBottom: "1.5rem", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+        <div className="glass-card flex-responsive" style={{ marginBottom: "1.5rem", gap: "1.5rem" }}>
           <div>
             <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>Daily Calorie Target</div>
             <div style={{ fontSize: "1.5rem", fontWeight: "800", fontFamily: "var(--font-heading)", color: "#f59e0b" }}>{originalTargets.calorie} kcal</div>
@@ -234,7 +234,7 @@ export default function SettingsPage() {
 
         <div className="form-group">
           <label className="form-label">Experience Level</label>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div className="flex-responsive">
             {EXPERIENCE_OPTIONS.map(opt => (
               <button key={opt.value} type="button" onClick={() => set("experience", opt.value)}
                 className={`btn ${form.experience === opt.value ? "btn-primary" : "btn-secondary"}`}
@@ -251,7 +251,7 @@ export default function SettingsPage() {
       <Section icon={<Utensils size={18} style={{ color: "var(--accent-violet)" }} />} title="Diet Preferences">
         <div className="form-group">
           <label className="form-label">Diet Type</label>
-          <div style={{ display: "flex", gap: "0.75rem" }}>
+          <div className="flex-responsive">
             {[{ value: "veg", label: "Vegetarian" }, { value: "non-veg", label: "Non-Vegetarian" }].map(opt => (
               <button key={opt.value} type="button"
                 className={`btn ${form.diet_preference === opt.value ? "btn-primary" : "btn-secondary"}`}
@@ -272,7 +272,7 @@ export default function SettingsPage() {
       <Section icon={<Dumbbell size={18} style={{ color: "var(--accent-lime)" }} />} title="Workout Setup">
         <div className="form-group">
           <label className="form-label">Workout Location</label>
-          <div style={{ display: "flex", gap: "0.75rem" }}>
+          <div className="flex-responsive">
             {["Gym", "Home Workout"].map(loc => (
               <button key={loc} type="button"
                 className={`btn ${form.workout_location === loc ? "btn-primary" : "btn-secondary"}`}

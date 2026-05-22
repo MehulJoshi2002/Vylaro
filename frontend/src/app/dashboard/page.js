@@ -63,7 +63,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Row */}
-      <div className="grid-3" style={{ marginBottom: "2rem" }}>
+      <div className="stats-grid" style={{ marginBottom: "2rem" }}>
         <StatCard icon={<Flame size={22} style={{ color: "#f59e0b" }} />} label="Calorie Target" value={user?.calorie_target ? `${user.calorie_target} kcal` : "—"} accent="#f59e0b" />
         <StatCard icon={<Zap size={22} style={{ color: "var(--accent-lime)" }} />} label="Protein Target" value={user?.protein_target ? `${user.protein_target}g` : "—"} accent="var(--accent-lime)" />
         <StatCard icon={<Target size={22} style={{ color: "var(--accent-cyan)" }} />} label="Current Weight" value={user?.weight ? `${user.weight} kg` : "—"} accent="var(--accent-cyan)" />
@@ -178,10 +178,10 @@ export default function Dashboard() {
 
 function StatCard({ icon, label, value, accent }) {
   return (
-    <div className="glass-card" style={{ textAlign: "center" }}>
+    <div className="glass-card stat-card">
       <div className="flex-center" style={{ marginBottom: "0.5rem" }}>{icon}</div>
-      <div style={{ fontSize: "1.6rem", fontWeight: "800", fontFamily: "var(--font-heading)", color: accent }}>{value}</div>
-      <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)", marginTop: "0.25rem" }}>{label}</div>
+      <div className="stat-card-value" style={{ color: accent }}>{value}</div>
+      <div className="stat-card-label">{label}</div>
     </div>
   );
 }

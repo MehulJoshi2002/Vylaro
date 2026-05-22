@@ -200,13 +200,186 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Log form — 1 col on small phones */
   .log-form-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .glass-card {
     padding: 1rem;
   }
 }
+
+/* Responsive day tabs (scrollable row on mobile) */
+.scroll-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive target stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.stat-card-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.stat-card-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    gap: 0.75rem;
+  }
+  .stat-card {
+    padding: 1rem 0.5rem;
+  }
+  .stat-card-value {
+    font-size: 1.3rem;
+  }
+  .stat-card-label {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .stat-card {
+    padding: 1rem;
+  }
+  .stat-card-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Exercise Rows */
+.exercise-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.exercise-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.exercise-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.exercise-badges {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 170px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .exercise-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .exercise-badges {
+    max-width: none;
+    justify-content: flex-start;
+    border-top: 1px solid var(--card-border);
+    padding-top: 0.75rem;
+  }
+}
+
+/* Responsive Diet Card Headers */
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.meal-badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .meal-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .meal-badges {
+    justify-content: flex-start;
+  }
+}
+
+/* Responsive Layout Helpers for Settings & Forms */
+.flex-responsive {
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: row;
+}
+
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .flex-responsive {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .grid-responsive-2, .grid-responsive-3 {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
 
 /* Premium Card & Glassmorphism */
 .glass-card {

@@ -167,7 +167,7 @@ export default function WorkoutPage() {
       {plan && (
         <>
           {/* Day Tabs */}
-          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
+          <div className="scroll-tabs" style={{ marginBottom: "1.5rem" }}>
             {days.map(day => {
               const isToday = day === todayName;
               return (
@@ -211,15 +211,17 @@ export default function WorkoutPage() {
                   return (
                     <div key={i} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${isLogged ? "rgba(163,230,53,0.25)" : "var(--card-border)"}`, borderRadius: "var(--radius-sm)", overflow: "hidden" }}>
                       {/* Exercise Row */}
-                      <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem" }}>
-                        <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: isLogged ? "rgba(163,230,53,0.2)" : "rgba(163,230,53,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "var(--font-heading)", fontWeight: "700", color: "var(--accent-lime)", fontSize: "0.9rem" }}>
-                          {isLogged ? <CheckCircle size={18} style={{ color: "var(--accent-lime)" }} /> : i + 1}
+                      <div className="exercise-row">
+                        <div className="exercise-header">
+                          <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: isLogged ? "rgba(163,230,53,0.2)" : "rgba(163,230,53,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "var(--font-heading)", fontWeight: "700", color: "var(--accent-lime)", fontSize: "0.9rem" }}>
+                            {isLogged ? <CheckCircle size={18} style={{ color: "var(--accent-lime)" }} /> : i + 1}
+                          </div>
+                          <div className="exercise-title-area">
+                            <div style={{ fontWeight: "600", marginBottom: "0.2rem" }}>{name}</div>
+                            {notes && <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{notes}</div>}
+                          </div>
                         </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontWeight: "600", marginBottom: "0.2rem" }}>{name}</div>
-                          {notes && <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}>{notes}</div>}
-                        </div>
-                        <div style={{ display: "flex", gap: "0.4rem", flexShrink: 0, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end", maxWidth: "160px" }}>
+                        <div className="exercise-badges">
                           {sets && <span className="badge badge-lime">{sets} sets</span>}
                           {reps && <span className="badge badge-gray">{reps} reps</span>}
                           {rest && <span className="badge badge-gray">{rest}</span>}

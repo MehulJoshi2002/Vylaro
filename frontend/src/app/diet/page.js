@@ -147,12 +147,12 @@ export default function DietPage() {
 
                   return (
                     <div key={mealName} className="glass-card">
-                      <div className="flex-between" style={{ marginBottom: "0.75rem" }}>
+                      <div className="meal-header">
                         <div>
                           <h3 style={{ fontSize: "1.05rem", color: "var(--accent-lime)" }}>{mealName}</h3>
                           {mealName2 && <p style={{ fontSize: "0.9rem", fontWeight: "600", marginTop: "0.15rem" }}>{mealName2}</p>}
                         </div>
-                        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                        <div className="meal-badges">
                           {proteinG && <span className="badge badge-lime">{proteinG}g protein</span>}
                           {cals && <span className="badge badge-gray">{cals} kcal</span>}
                           {costInr && <span className="badge badge-violet">₹{costInr}</span>}
