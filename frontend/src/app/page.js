@@ -117,6 +117,15 @@ export default function Home() {
 
         {/* Right Side: Auth Form Card */}
         <div className="glass-card" style={{ maxWidth: "420px", width: "100%", margin: "0 auto" }}>
+          
+          {/* Mobile-only logo/name header */}
+          <div className="mobile-brand-header">
+            <Dumbbell size={36} style={{ color: "var(--accent-lime)" }} />
+            <h1>
+              <span className="gradient-text">Vylaro</span>
+            </h1>
+          </div>
+
           <div className="tab-container">
             <button 
               className={`tab-btn ${isLogin ? "active" : ""}`}

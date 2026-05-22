@@ -166,6 +166,21 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
 
+  .mobile-brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-brand-header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+    font-family: var(--font-heading);
+  }
+
   /* Chat panel */
   .ai-chat-window {
     width: calc(100vw - 2rem);
@@ -404,6 +419,10 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.mobile-brand-header {
+  display: none;
 }
 
 .gradient-text-violet {
