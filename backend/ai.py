@@ -9,7 +9,7 @@ from google.genai import types as genai_types
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBwZjBTJiLyIhxZ_SXzWxyjzd-YWvNFhqg")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL = "gemini-2.5-flash"
 
 # Initialize Gemini
@@ -228,7 +228,7 @@ def generate_recipe_ai(ingredients: List[str], user_profile: Dict[str, Any]) -> 
 # ----------------- AI Chat Assistant -----------------
 def generate_chat_response_ai(message: str, history: List[Dict[str, str]], user_profile: Dict[str, Any]) -> str:
     user_context = f"""
-    You are FitCopilot, a brilliant, friendly, and expert AI fitness coach.
+    You are Vylaro, a brilliant, friendly, and expert AI fitness coach.
     You are chatting with a user whose current fitness details are:
     - Age: {user_profile.get('age')} years old
     - Goal: {user_profile.get('goal')} weight
@@ -456,7 +456,7 @@ def get_mock_recipe(ingredients: List[str], diet_pref: str) -> Dict[str, Any]:
             "Garnish with fresh coriander leaves and squeeze a bit of lime. Enjoy with toast!"
         ]
     elif any("egg" in idx for idx in ing_lower):
-        name = "FitCopilot Masala Egg Omelette"
+        name = "Vylaro Masala Egg Omelette"
         macros = {"protein": 22, "calories": 280, "carbs": 4, "fats": 18}
         instructions = [
             "Whisk 2 whole eggs and 1 egg white in a bowl with salt, black pepper, and turmeric.",
@@ -524,7 +524,7 @@ def get_mock_chat_response(message: str, profile: Dict[str, Any]) -> str:
         )
     else:
         return (
-            f"Hey there! As your FitCopilot, I'm here to help you {profile.get('goal', 'lose weight')}. "
+            f"Hey there! As your Vylaro AI, I'm here to help you {profile.get('goal', 'lose weight')}. "
             f"Your daily target is {profile.get('calorie_target', 2000)} calories and {profile.get('protein_target', 120)}g of protein. "
             "Do you have a question about today's workouts, recipes, or a food substitution you'd like to make?"
         )
