@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "../api";
-import { User, Target, Utensils, Dumbbell, Save, CheckCircle, RefreshCw } from "lucide-react";
+import { User, Target, Utensils, Dumbbell, Save, CheckCircle, RefreshCw, LogOut } from "lucide-react";
 
 const GOAL_OPTIONS = [
   { value: "lose", label: "Lose Weight", desc: "Caloric deficit + fat loss" },
@@ -33,6 +33,12 @@ const EQUIPMENT_LIST = [
 export default function SettingsPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    router.push("/");
+  };
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
@@ -295,6 +301,20 @@ export default function SettingsPage() {
             </div>
           </div>
         )}
+      </Section>
+
+      {/* Account Actions */}
+      <Section icon={<LogOut size={18} style={{ color: "var(--danger)" }} />} title="Account Actions">
+        <div style={{ display: "flex", gap: "1rem", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+          <div>
+            <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", margin: 0 }}>
+              Logged in as <strong style={{ color: "var(--text-primary)" }}>{form.name}</strong>. Want to log out of your session?
+            </p>
+          </div>
+          <button className="btn btn-secondary" onClick={handleLogout} style={{ border: "1px solid rgba(239, 68, 68, 0.25)", color: "var(--danger)", padding: "0.5rem 1rem", fontSize: "0.85rem", gap: "0.4rem" }}>
+            <LogOut size={14} /> Logout
+          </button>
+        </div>
       </Section>
 
       {/* Bottom Save */}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "../api";
-import { Dumbbell, ChevronRight, ChevronLeft, Sparkles } from "lucide-react";
+import { Dumbbell, ChevronRight, ChevronLeft, Sparkles, LogOut } from "lucide-react";
 
 const EQUIPMENT_OPTIONS = [
   "Barbell", "Dumbbells", "Pull-up Bar", "Bench", "Cables/Pulley",
@@ -12,6 +12,11 @@ const EQUIPMENT_OPTIONS = [
 
 export default function Onboarding() {
   const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    router.push("/");
+  };
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -201,6 +206,32 @@ export default function Onboarding() {
   return (
     <div className="fade-in" style={{ minHeight: "100vh", background: "var(--bg-primary)", padding: "2rem 1rem" }}>
       <div style={{ maxWidth: "680px", margin: "0 auto" }}>
+
+        {/* Top bar with Logout */}
+        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "0.5rem" }}>
+          <button 
+            onClick={handleLogout} 
+            style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "0.4rem", 
+              background: "transparent", 
+              border: "none", 
+              color: "var(--text-secondary)", 
+              cursor: "pointer", 
+              fontSize: "0.85rem",
+              fontFamily: "var(--font-heading)",
+              fontWeight: "600",
+              padding: "0.5rem 0.75rem",
+              borderRadius: "var(--radius-sm)",
+              transition: "all 0.2s ease"
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = "var(--danger)"; e.currentTarget.style.background = "rgba(239, 68, 68, 0.08)"; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "var(--text-secondary)"; e.currentTarget.style.background = "transparent"; }}
+          >
+            <LogOut size={14} /> Logout
+          </button>
+        </div>
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
