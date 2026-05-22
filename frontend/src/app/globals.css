@@ -794,3 +794,46 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary);
   border: 1px solid var(--card-border);
 }
+
+/* ========================================== */
+/*   RESPONSIVE MEDIA QUERIES (END OVERRIDES)  */
+/* ========================================== */
+@media (max-width: 768px) {
+  /* Navbar Overrides - Hide desktop links and show mobile menu toggle */
+  .nav-links,
+  .nav-user-desktop {
+    display: none !important;
+  }
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
+
+  /* Glass Card Padding Overrides on mobile/tablet */
+  .glass-card {
+    padding: 1.1rem !important;
+  }
+
+  /* Chat Panel Overrides for small screens */
+  .ai-chat-window {
+    width: calc(100vw - 2rem) !important;
+    right: 1rem !important;
+    left: 1rem !important;
+    bottom: 5rem !important;
+    height: min(480px, 70vh) !important;
+  }
+
+  .ai-chat-bubble {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Glass Card Padding Overrides on small devices */
+  .glass-card {
+    padding: 1rem !important;
+  }
+}
+
