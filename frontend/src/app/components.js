@@ -48,61 +48,87 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
-      <div className="app-container flex-between">
-        <Link href="/dashboard" className="nav-logo">
-          <Dumbbell style={{ color: "var(--accent-lime)" }} size={28} />
-          <span className="gradient-text">Vylaro</span>
-        </Link>
+    <>
+      <nav className="navbar">
+        <div className="app-container flex-between">
+          <div className="flex-center" style={{ gap: "0.75rem" }}>
+            {/* Mobile Hamburger toggle - positioned on left */}
+            <button className="nav-mobile-toggle" onClick={() => setMenuOpen(true)} aria-label="Open menu">
+              <Menu size={24} />
+            </button>
 
-        {/* Desktop nav links */}
-        <ul className="nav-links">
-          {navLinks.map(link => (
-            <li key={link.href}>
-              <Link href={link.href} className={`nav-link ${pathname === link.href ? "active" : ""}`}>
-                {link.icon} {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        {/* Desktop user menu */}
-        <div className="flex-center nav-user-desktop" style={{ gap: "0.75rem" }}>
-          <Link href="/settings" className="flex-center font-heading" style={{ gap: "0.5rem", fontSize: "0.9rem", textDecoration: "none", color: pathname === "/settings" ? "var(--accent-lime)" : "var(--text-primary)", background: pathname === "/settings" ? "rgba(163,230,53,0.08)" : "transparent", border: "1px solid var(--card-border)", borderRadius: "2rem", padding: "0.35rem 0.85rem" }}>
-            <User size={15} style={{ color: pathname === "/settings" ? "var(--accent-lime)" : "var(--text-secondary)" }} />
-            <span>{userName}</span>
-            <Settings size={13} style={{ color: "var(--text-muted)" }} />
-          </Link>
-          <button onClick={handleLogout} className="btn btn-secondary" style={{ padding: "0.4rem 0.8rem", fontSize: "0.85rem" }}>
-            <LogOut size={14} /> Logout
-          </button>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button className="nav-mobile-toggle" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile dropdown menu */}
-      {menuOpen && (
-        <div className="nav-mobile-menu">
-          {navLinks.map(link => (
-            <Link key={link.href} href={link.href} className={`nav-link ${pathname === link.href ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
-              {link.icon} {link.label}
+            <Link href="/dashboard" className="nav-logo">
+              <Dumbbell style={{ color: "var(--accent-lime)" }} size={28} />
+              <span className="gradient-text">Vylaro</span>
             </Link>
-          ))}
-          <div style={{ borderTop: "1px solid var(--card-border)", marginTop: "0.5rem", paddingTop: "0.75rem", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-            <Link href="/settings" className="nav-link" onClick={() => setMenuOpen(false)} style={{ color: pathname === "/settings" ? "var(--accent-lime)" : "var(--text-secondary)" }}>
-              <User size={16} /> {userName} <Settings size={13} style={{ marginLeft: "auto", color: "var(--text-muted)" }} />
+          </div>
+
+          {/* Desktop nav links */}
+          <ul className="nav-links">
+            {navLinks.map(link => (
+              <li key={link.href}>
+                <Link href={link.href} className={`nav-link ${pathname === link.href ? "active" : ""}`}>
+                  {link.icon} {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop user menu */}
+          <div className="flex-center nav-user-desktop" style={{ gap: "0.75rem" }}>
+            <Link href="/settings" className="flex-center font-heading" style={{ gap: "0.5rem", fontSize: "0.9rem", textDecoration: "none", color: pathname === "/settings" ? "var(--accent-lime)" : "var(--text-primary)", background: pathname === "/settings" ? "rgba(163,230,53,0.08)" : "transparent", border: "1px solid var(--card-border)", borderRadius: "2rem", padding: "0.35rem 0.85rem" }}>
+              <User size={15} style={{ color: pathname === "/settings" ? "var(--accent-lime)" : "var(--text-secondary)" }} />
+              <span>{userName}</span>
+              <Settings size={13} style={{ color: "var(--text-muted)" }} />
             </Link>
-            <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="btn btn-secondary" style={{ justifyContent: "flex-start", marginTop: "0.25rem" }}>
+            <button onClick={handleLogout} className="btn btn-secondary" style={{ padding: "0.4rem 0.8rem", fontSize: "0.85rem" }}>
               <LogOut size={14} /> Logout
             </button>
           </div>
         </div>
-      )}
-    </nav>
+      </nav>
+
+      {/* Mobile Drawer (Sidebar) */}
+      <div className={`drawer-overlay ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(false)} />
+      
+      <div className={`drawer-panel ${menuOpen ? "open" : ""}`}>
+        <div className="drawer-header">
+          <div className="flex-center" style={{ gap: "0.5rem" }}>
+            <Dumbbell style={{ color: "var(--accent-lime)" }} size={24} />
+            <span className="gradient-text font-heading" style={{ fontWeight: "800", fontSize: "1.2rem" }}>Vylaro</span>
+          </div>
+          <button onClick={() => setMenuOpen(false)} style={{ background: "transparent", border: "none", color: "var(--text-primary)", cursor: "pointer", padding: "0.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-label="Close menu">
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="drawer-links">
+          {navLinks.map(link => (
+            <Link key={link.href} href={link.href} className={`drawer-link ${pathname === link.href ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
+              {link.icon} {link.label}
+            </Link>
+          ))}
+          <Link href="/settings" className={`drawer-link ${pathname === "/settings" ? "active" : ""}`} onClick={() => setMenuOpen(false)}>
+            <User size={18} /> Settings
+          </Link>
+        </div>
+
+        <div className="drawer-footer">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.5rem 0.25rem" }}>
+            <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(163,230,53,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <User size={18} style={{ color: "var(--accent-lime)" }} />
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontWeight: "600", fontSize: "0.9rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{userName}</div>
+              <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>Standard User</div>
+            </div>
+          </div>
+          <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="btn btn-secondary" style={{ width: "100%", justifyContent: "center", gap: "0.5rem" }}>
+            <LogOut size={14} /> Logout
+          </button>
+        </div>
+      </div>
+    </>
   );
 }
 
